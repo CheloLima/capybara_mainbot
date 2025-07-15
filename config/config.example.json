@@ -1,0 +1,12 @@
+{
+  "bot_token": "xxx",
+  "client_id": "xxx",
+  "guild_id": "xxx",
+  "footer_text": "© Capybara Crew 2025 – powered by Chelo Lima EIRL",
+  "mysql": {
+    "host": "capybara.click",
+    "user": "Clan_Watchdog",
+    "password": "4EVp81_@iDmbdxjh",
+    "database": "Clan_Watchdog"
+  }
+}
