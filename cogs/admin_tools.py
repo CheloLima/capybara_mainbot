@@ -52,5 +52,5 @@ class AdminTools(commands.Cog):
                 await member.add_roles(role)
         await interaction.followup.send(f"Die Rolle {role.name} wurde an alle Mitglieder vergeben.")
 
-def setup(bot):
-    bot.add_cog(AdminTools(bot))
+async def setup(bot):
+    await bot.add_cog(AdminTools(bot))

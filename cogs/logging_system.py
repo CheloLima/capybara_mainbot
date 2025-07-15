@@ -93,5 +93,5 @@ class LoggingSystem(commands.Cog):
         cursor.close()
         conn.close()
 
-def setup(bot):
-    bot.add_cog(LoggingSystem(bot))
+async def setup(bot):
+    await bot.add_cog(LoggingSystem(bot))

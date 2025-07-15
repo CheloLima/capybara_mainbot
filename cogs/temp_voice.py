@@ -82,5 +82,5 @@ class TempVoiceControlView(discord.ui.View):
             await interaction.response.send_message("Dies ist kein temporärer Channel.", ephemeral=True)
 
 
-def setup(bot):
-    bot.add_cog(TempVoice(bot))
+async def setup(bot):
+    await bot.add_cog(TempVoice(bot))

@@ -57,5 +57,5 @@ class SelfRoleView(discord.ui.View):
 
         return True
 
-def setup(bot):
-    bot.add_cog(SelfRoles(bot))
+async def setup(bot):
+    await bot.add_cog(SelfRoles(bot))

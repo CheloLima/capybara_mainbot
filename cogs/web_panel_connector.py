@@ -58,5 +58,5 @@ class WebPanelConnector(commands.Cog):
                 print(f"Error connecting to web panel: {e}")
 
 
-def setup(bot):
-    bot.add_cog(WebPanelConnector(bot))
+async def setup(bot):
+    await bot.add_cog(WebPanelConnector(bot))
