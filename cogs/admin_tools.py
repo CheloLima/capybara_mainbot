@@ -2,10 +2,10 @@ import discord
 from discord.ext import commands
 from discord import app_commands
 
-class AddUserModal(discord.ui.Modal, title='Add User to Voice Channel'):
+class AddUserModal(discord.ui.Modal, title='Benutzer zum Voice-Channel hinzufügen'):
     user_to_add = discord.ui.TextInput(
-        label='User ID or Name',
-        placeholder='Enter the User ID or name of the user to add',
+        label='Benutzer-ID oder Name',
+        placeholder='Gib die Benutzer-ID oder den Namen des Benutzers ein',
     )
 
     async def on_submit(self, interaction: discord.Interaction):
@@ -20,37 +20,37 @@ class AddUserModal(discord.ui.Modal, title='Add User to Voice Channel'):
 
         if user and interaction.user.voice and interaction.user.voice.channel:
             await interaction.user.voice.channel.set_permissions(user, connect=True)
-            await interaction.response.send_message(f"Added {user.mention} to your voice channel.", ephemeral=True)
+            await interaction.response.send_message(f"{user.mention} wurde zu deinem Voice-Channel hinzugefügt.", ephemeral=True)
         else:
-            await interaction.response.send_message("Could not find the user or you are not in a voice channel.", ephemeral=True)
+            await interaction.response.send_message("Der Benutzer konnte nicht gefunden werden oder du bist in keinem Voice-Channel.", ephemeral=True)
 
 class AdminTools(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
 
-    @app_commands.command(name="adminpanel", description="Configure the bot")
+    @app_commands.command(name="adminpanel", description="Konfiguriere den Bot")
     @app_commands.checks.has_permissions(administrator=True)
     async def adminpanel(self, interaction: discord.Interaction):
         embed = discord.Embed(
             title="Admin Panel",
-            description="This is the admin panel. Configuration options will be added here.",
+            description="Dies ist das Admin-Panel. Konfigurationsoptionen werden hier hinzugefügt.",
             color=0x3aff3a
         )
         embed.set_footer(text="© Capybara Crew 2025 – powered by Chelo Lima EIRL")
         await interaction.response.send_message(embed=embed, ephemeral=True)
 
-    @app_commands.command(name="add_user", description="Add a user to your temporary voice channel")
+    @app_commands.command(name="add_user", description="Fügt einen Benutzer zu deinem temporären Voice-Channel hinzu")
     async def add_user(self, interaction: discord.Interaction):
         await interaction.response.send_modal(AddUserModal())
 
-    @app_commands.command(name="broadcast_role", description="Give a role to all members")
+    @app_commands.command(name="broadcast_role", description="Vergibt eine Rolle an alle Mitglieder")
     @app_commands.checks.is_owner()
     async def broadcast_role(self, interaction: discord.Interaction, role: discord.Role):
         await interaction.response.defer(ephemeral=True)
         for member in interaction.guild.members:
             if not member.bot:
                 await member.add_roles(role)
-        await interaction.followup.send(f"The {role.name} role has been given to all members.")
+        await interaction.followup.send(f"Die Rolle {role.name} wurde an alle Mitglieder vergeben.")
 
 def setup(bot):
     bot.add_cog(AdminTools(bot))

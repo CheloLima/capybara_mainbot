@@ -11,6 +11,7 @@ with open('config/config.json', 'r') as f:
 intents = discord.Intents.default()
 intents.members = True
 bot = commands.Bot(command_prefix='/', intents=intents)
+bot.config = config
 
 @bot.event
 async def on_ready():

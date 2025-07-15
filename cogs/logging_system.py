@@ -8,13 +8,13 @@ class LoggingSystem(commands.Cog):
         self.bot = bot
         create_tables()
 
-    @app_commands.command(name="logs", description="Display logs from the database")
-    @app_commands.describe(log_type="The type of log to display")
+    @app_commands.command(name="logs", description="Zeigt Logs aus der Datenbank an")
+    @app_commands.describe(log_type="Die Art des anzuzeigenden Logs")
     @app_commands.choices(log_type=[
-        app_commands.Choice(name="Main Logs", value="main_logs"),
-        app_commands.Choice(name="Channel Logs", value="channel_logs"),
-        app_commands.Choice(name="Punishment Logs", value="punishment_logs"),
-        app_commands.Choice(name="Audit/User Logs", value="user_logs"),
+        app_commands.Choice(name="Haupt-Logs", value="main_logs"),
+        app_commands.Choice(name="Channel-Logs", value="channel_logs"),
+        app_commands.Choice(name="Straf-Logs", value="punishment_logs"),
+        app_commands.Choice(name="Audit/Benutzer-Logs", value="user_logs"),
     ])
     async def logs(self, interaction: discord.Interaction, log_type: app_commands.Choice[str]):
         conn = get_db_connection()
@@ -30,7 +30,7 @@ class LoggingSystem(commands.Cog):
         )
 
         if not logs:
-            embed.description = "No logs found."
+            embed.description = "Keine Logs gefunden."
         else:
             for log in logs:
                 embed.add_field(

@@ -1,0 +1,12 @@
+{
+    "slash_command_permissions": {
+        "adminpanel": "admin",
+        "add_user": "everyone",
+        "logs": "moderator",
+        "broadcast_role": "owner"
+    },
+    "self_roles": {
+        "Role 1": "123456789012345678",
+        "Role 2": "234567890123456789"
+    }
+}

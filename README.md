@@ -1,61 +1,61 @@
 # Capybara Crew Discord Bot
 
-This is a modular Discord bot for the Capybara Crew multigaming clan.
+Dies ist ein modularer Discord-Bot für den Multigaming-Clan Capybara Crew.
 
-## Features
+## Funktionen
 
-*   **Modular System**: Features are organized into cogs, which can be enabled or disabled.
-*   **TempVoice System**: Users can create their own temporary voice channels.
-*   **SelfRole System**: Users can assign roles to themselves using buttons.
-*   **Logging System**: Bot and server events are logged to a MySQL database.
-*   **Admin Tools**: Includes commands for managing the bot and server.
-*   **Web Interface**: A web-based interface for configuration and management.
+*   **Modulares System**: Funktionen sind in Cogs organisiert, die aktiviert oder deaktiviert werden können.
+*   **TempVoice-System**: Benutzer können ihre eigenen temporären Sprachkanäle erstellen.
+*   **SelfRole-System**: Benutzer können sich über Buttons selbst Rollen zuweisen.
+*   **Logging-System**: Bot- und Server-Ereignisse werden in einer MySQL-Datenbank protokolliert.
+*   **Admin-Werkzeuge**: Enthält Befehle zur Verwaltung des Bots und des Servers.
+*   **Web-Interface**: Eine webbasierte Oberfläche zur Konfiguration und Verwaltung.
 
-## Commands
+## Befehle
 
 ### Admin
-*   `/adminpanel`: Opens the admin panel for bot configuration.
-*   `/setup_selfroles`: Sets up the self-role message with buttons.
-*   `/broadcast_role [role]`: Gives a role to all members (bot owner only).
+*   `/adminpanel`: Öffnet das Admin-Panel zur Bot-Konfiguration.
+*   `/setup_selfroles`: Richtet die Self-Role-Nachricht mit Buttons ein.
+*   `/broadcast_role [rolle]`: Vergibt eine Rolle an alle Mitglieder (nur für den Bot-Besitzer).
 
 ### TempVoice
-*   `/add_user`: Adds a user to your temporary voice channel.
+*   `/add_user`: Fügt einen Benutzer zu deinem temporären Sprachkanal hinzu.
 
 ### Logging
-*   `/logs [log_type]`: Displays logs from the database.
+*   `/logs [log_typ]`: Zeigt Protokolle aus der Datenbank an.
 
-## Setup
+## Einrichtung
 
-1.  **Clone the repository:**
+1.  **Repository klonen:**
     ```bash
     git clone https://github.com/your-repo/capybara-bot.git
     cd capybara-bot
     ```
-2.  **Install dependencies:**
+2.  **Abhängigkeiten installieren:**
     ```bash
     pip install -r requirements.txt
     ```
-3.  **Configure the bot:**
-    *   Rename `config/config.example.json` to `config/config.json`.
-    *   Fill in the required values in `config/config.json`:
-        *   `bot_token`: Your Discord bot token.
-        *   `client_id`: Your bot's client ID.
-        *   `guild_id`: The ID of your Discord server.
-        *   `mysql`: Your MySQL database credentials.
-4.  **Run the bot:**
+3.  **Bot konfigurieren:**
+    *   Benenne `config/config.example.json` in `config/config.json` um.
+    *   Fülle die erforderlichen Werte in `config/config.json` aus:
+        *   `bot_token`: Dein Discord-Bot-Token.
+        *   `client_id`: Die Client-ID deines Bots.
+        *   `guild_id`: Die ID deines Discord-Servers.
+        *   `mysql`: Deine MySQL-Datenbank-Anmeldeinformationen.
+4.  **Bot starten:**
     ```bash
     python bot.py
     ```
 
-## Web Interface
+## Web-Interface
 
-The web interface is used to configure the bot and view logs. To run the web interface, execute the following command:
+Das Web-Interface wird zur Konfiguration des Bots und zur Anzeige von Protokollen verwendet. Um das Web-Interface zu starten, führe den folgenden Befehl aus:
 
 ```bash
-python web/app.py
+php -S localhost:8000 -t web
 ```
 
-The web interface will be available at `http://127.0.0.1:5000`.
+Das Web-Interface ist dann unter `http://localhost:8000` verfügbar.
 
 ---
 

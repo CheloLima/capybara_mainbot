@@ -51,9 +51,9 @@ class TempVoice(commands.Cog):
 
     async def send_control_panel(self, channel):
         embed = discord.Embed(
-            title="Welcome to your temporary channel!",
-            description="You can manage your channel with the buttons below.\n\n"
-                        "**Hint:** `/add_user` offers autocomplete!",
+            title="Willkommen in deinem temporären Channel!",
+            description="Du kannst deinen Channel mit den Buttons unten verwalten.\n\n"
+                        "**Hinweis:** `/add_user` bietet Autocomplete!",
             color=0x3aff3a
         )
         embed.set_footer(text="© Capybara Crew 2025 – powered by Chelo Lima EIRL")
@@ -67,19 +67,19 @@ class TempVoiceControlView(discord.ui.View):
         super().__init__(timeout=None)
         self.cog = cog
 
-    @discord.ui.button(label="➕ Add User", style=discord.ButtonStyle.green, custom_id="add_user_button")
+    @discord.ui.button(label="➕ Benutzer hinzufügen", style=discord.ButtonStyle.green, custom_id="add_user_button")
     async def add_user_button(self, button: discord.ui.Button, interaction: discord.Interaction):
         # This will be handled by a separate /add_user command with a modal
-        await interaction.response.send_message("Please use the `/add_user` command to add users.", ephemeral=True)
+        await interaction.response.send_message("Bitte benutze den `/add_user` Befehl, um Benutzer hinzuzufügen.", ephemeral=True)
 
-    @discord.ui.button(label="🗑️ Delete Channel", style=discord.ButtonStyle.red, custom_id="delete_channel_button")
+    @discord.ui.button(label="🗑️ Channel löschen", style=discord.ButtonStyle.red, custom_id="delete_channel_button")
     async def delete_channel_button(self, button: discord.ui.Button, interaction: discord.Interaction):
         channel = interaction.channel
         if channel.id in self.cog.temp_channels:
             await channel.delete()
             self.cog.temp_channels.remove(channel.id)
         else:
-            await interaction.response.send_message("This is not a temporary channel.", ephemeral=True)
+            await interaction.response.send_message("Dies ist kein temporärer Channel.", ephemeral=True)
 
 
 def setup(bot):

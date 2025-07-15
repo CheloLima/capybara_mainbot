@@ -7,12 +7,12 @@ class SelfRoles(commands.Cog):
         self.bot = bot
         self.bot.add_view(SelfRoleView())
 
-    @app_commands.command(name="setup_selfroles", description="Set up the self-role message")
+    @app_commands.command(name="setup_selfroles", description="Richtet die Self-Role-Nachricht ein")
     @app_commands.checks.has_permissions(administrator=True)
     async def setup_selfroles(self, interaction: discord.Interaction):
         embed = discord.Embed(
             title="Self Roles",
-            description="Click the buttons below to get your roles.",
+            description="Klicke auf die Buttons unten, um deine Rollen zu erhalten.",
             color=0x3aff3a
         )
         embed.set_footer(text="© Capybara Crew 2025 – powered by Chelo Lima EIRL")
@@ -20,7 +20,7 @@ class SelfRoles(commands.Cog):
         view = SelfRoleView()
 
         await interaction.channel.send(embed=embed, view=view)
-        await interaction.response.send_message("Self-role message has been set up.", ephemeral=True)
+        await interaction.response.send_message("Die Self-Role-Nachricht wurde eingerichtet.", ephemeral=True)
 
 class SelfRoleView(discord.ui.View):
     def __init__(self):
@@ -28,8 +28,8 @@ class SelfRoleView(discord.ui.View):
         # Roles will be configurable later via the web panel.
         # For now, we add some placeholder buttons.
         # The custom_id is what links the button to the role.
-        self.add_item(discord.ui.Button(label="Role 1", style=discord.ButtonStyle.primary, custom_id="selfrole_123"))
-        self.add_item(discord.ui.Button(label="Role 2", style=discord.ButtonStyle.primary, custom_id="selfrole_456"))
+        self.add_item(discord.ui.Button(label="Rolle 1", style=discord.ButtonStyle.primary, custom_id="selfrole_123"))
+        self.add_item(discord.ui.Button(label="Rolle 2", style=discord.ButtonStyle.primary, custom_id="selfrole_456"))
 
     async def interaction_check(self, interaction: discord.Interaction) -> bool:
         # This method is called before any button callback.
@@ -45,15 +45,15 @@ class SelfRoleView(discord.ui.View):
         role = interaction.guild.get_role(role_id)
 
         if not role:
-            await interaction.response.send_message("This role no longer exists.", ephemeral=True)
+            await interaction.response.send_message("Diese Rolle existiert nicht mehr.", ephemeral=True)
             return False
 
         if role in interaction.user.roles:
             await interaction.user.remove_roles(role)
-            await interaction.response.send_message(f"Removed the {role.name} role.", ephemeral=True)
+            await interaction.response.send_message(f"Die Rolle {role.name} wurde dir entfernt.", ephemeral=True)
         else:
             await interaction.user.add_roles(role)
-            await interaction.response.send_message(f"Added the {role.name} role.", ephemeral=True)
+            await interaction.response.send_message(f"Die Rolle {role.name} wurde dir hinzugefügt.", ephemeral=True)
 
         return True
 
