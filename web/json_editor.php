@@ -1,9 +1,6 @@
 <?php
-session_start();
-if (!isset($_SESSION['user_id'])) {
-    header('Location: index.php');
-    exit;
-}
+$page_title = 'config.json Editor';
+require_once 'includes/header.php';
 
 $config_path = __DIR__ . '/../config/config.json';
 $config = json_decode(file_get_contents($config_path), true);
@@ -26,24 +23,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     exit;
 }
 ?>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Capybara Crew Bot - config.json Editor</title>
-    <link rel="stylesheet" href="css/style.css">
-</head>
-<body>
-    <div class="container">
-        <h1>config.json Editor</h1>
-        <form action="json_editor.php" method="post">
-            <textarea name="config" rows="20" cols="80"><?php echo json_encode($config, JSON_PRETTY_PRINT); ?></textarea>
-            <br><br>
-            <input type="submit" value="Änderungen speichern">
-        </form>
-        <br>
-        <a href="dashboard.php">Zurück zum Dashboard</a>
-    </div>
-</body>
-</html>
+
+<form action="json_editor.php" method="post">
+    <textarea name="config" rows="20" cols="80"><?php echo json_encode($config, JSON_PRETTY_PRINT); ?></textarea>
+    <br><br>
+    <input type="submit" value="Änderungen speichern">
+</form>
+
+<?php require_once 'includes/footer.php'; ?>

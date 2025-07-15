@@ -16,20 +16,21 @@ class WebPanelConnector(commands.Cog):
     @tasks.loop(seconds=10)
     async def command_poller(self):
         await self.bot.wait_until_ready()
+        url = f"{self.bot.config['web_panel_url']}/api.php?commands=true"
         async with aiohttp.ClientSession() as session:
             try:
-                async with session.get('http://localhost/api.php?commands=true') as resp:
+                async with session.get(url) as resp:
                     if resp.status == 200:
                         commands = await resp.json()
                         for command in commands:
                             action = command.get('action')
                             cog = command.get('cog')
                             if action == 'load':
-                                self.bot.load_extension(f'cogs.{cog}')
+                                await self.bot.load_extension(f'cogs.{cog}')
                             elif action == 'unload':
-                                self.bot.unload_extension(f'cogs.{cog}')
+                                await self.bot.unload_extension(f'cogs.{cog}')
                             elif action == 'reload':
-                                self.bot.reload_extension(f'cogs.{cog}')
+                                await self.bot.reload_extension(f'cogs.{cog}')
             except aiohttp.ClientConnectorError as e:
                 print(f"Error connecting to web panel: {e}")
 
@@ -47,9 +48,10 @@ class WebPanelConnector(commands.Cog):
             'cogs': list(self.bot.cogs.keys())
         }
 
+        url = f"{self.bot.config['web_panel_url']}/api.php"
         async with aiohttp.ClientSession() as session:
             try:
-                async with session.post('http://localhost/api.php', json=data) as resp:
+                async with session.post(url, json=data) as resp:
                     if resp.status != 200:
                         print(f"Error updating web panel: {resp.status}")
             except aiohttp.ClientConnectorError as e:

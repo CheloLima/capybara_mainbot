@@ -3,6 +3,7 @@
   "client_id": "xxx",
   "guild_id": "xxx",
   "footer_text": "© Capybara Crew 2025 – powered by Chelo Lima EIRL",
+  "web_panel_url": "http://localhost",
   "mysql": {
     "host": "capybara.click",
     "user": "Clan_Watchdog",
