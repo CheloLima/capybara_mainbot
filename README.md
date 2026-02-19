@@ -1,6 +1,6 @@
-# Capybara Crew Discord Bot
+# Crew Discord Bot
 
-Dies ist ein modularer Discord-Bot für den Multigaming-Clan Capybara Crew.
+Dies ist ein modularer Discord-Bot für Crews.
 
 ## Funktionen
 
